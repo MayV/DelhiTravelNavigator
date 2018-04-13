@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #header
+        {
+            background: #A50B0B;
+            height: 300px;
+            margin: -1.7% 0px 0px 0px;
+        }
+        .navbar-brand
+        {
+            float: none;
+            padding: 5px;
+        }
+        .navbar-center
+        {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            text-align: center;
+            margin: auto;
+            height: 100%;
+        }
+        #header {
+            position: relative;
+        }
+
+        #header > h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 3px solid white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        #header > h1:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header" id="header">
+        <h1 style="color: WHITE">Delhi Travel Navigator</h1>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-dropdown">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">Bus <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'get_busroutequery' %}">Find Route Between Stops</a></li>
+                            <li><a href="{% url 'get_busquery' %}">Get Bus Details</a></li>
+                            <li><a href="{% url 'get_busstopquery' %}">Get Bus Stop Detail</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">Metro <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'get_metroroutequery' %}">Find Route Between Stations</a></li>
+                            <li><a href="{% url 'get_metroquery' %}">Get Metro Line Details</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

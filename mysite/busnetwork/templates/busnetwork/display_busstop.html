@@ -1,0 +1,37 @@
+{% extends 'home/base_header_and_navbar.html' %}
+{% block body %}
+<body>
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row row-buffer">
+                <div class="col-sm-4" style=" margin: auto; margin-left: 50px; padding: 10px;">
+                    <h4>{{ form }}</h4>
+                </div>
+                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                    <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_busstopquery' %}'">Get</button>
+                </div>
+            </div>
+        </form>
+        <div class="row row-buffer">
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>Bus Stop: {{ busstopDetails.busstop_name }}</h4>
+            </div>
+        </div>
+        <div class="row row-buffer">
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>Buses Arriving:</h4>
+            </div>
+            <div class="col-sm-8" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h5>
+                    {% for b in busstopDetails.all_buses %}
+                        {{ b }},
+                    {% endfor %}
+                    :)
+                </h5>
+            </div>
+        </div>
+        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
+    </div>
+</body>
+{% endblock %}

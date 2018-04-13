@@ -1,0 +1,59 @@
+{% extends 'home/base_header_and_navbar.html' %}
+{% block body %}
+<body>
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row row-buffer">
+                <div class="col-sm-6" style=" margin: auto; margin-left: 50px; padding: 10px;">
+                    <h4>{{ form }}</h4>
+                </div>
+                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                    <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>
+                </div>
+            </div>
+        </form>
+        <div class="row row-buffer">
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>Metro Line: {{ metroDetails.metro_color }}</h4>
+            </div>
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>Start Station: {{ metroDetails.start_station }}</h4>
+            </div>
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>Dest. Station: {{ metroDetails.end_station }}</h4>
+            </div>
+        </div>
+        <div class="row row-buffer">
+            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h4>All Metro Stations:</h4>
+            </div>
+            <div class="col-sm-8" style="margin: auto; margin-left: 50px; padding: 10px;">
+                <h5>
+                    {% for stp in metroDetails.all_stations %}
+                        {{ stp }}->
+                    {% endfor %}
+                    END
+                </h5>
+                <h5>
+                    {% if metroDetails.sub_stations1 %}
+                        {% for stp in metroDetails.sub_stations1 %}
+                            {{ stp }}->
+                        {% endfor %}
+                        END
+                    {% endif %}
+                </h5>
+                <h5>
+                    {% if metroDetails.sub_stations2 %}
+                        {% for stp in metroDetails.sub_stations2 %}
+                            {{ stp }}->
+                        {% endfor %}
+                        END
+                    {% endif %}
+                </h5>
+            </div>
+        </div>
+        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
+    </div>
+</body>
+{% endblock %}

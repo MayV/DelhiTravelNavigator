@@ -1,0 +1,18 @@
+{% extends 'home/base_header_and_navbar.html' %}
+{% block body %}
+<body>
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row row-buffer">
+                <div class="col-sm-6" style=" margin: auto; margin-left: 50px; padding: 10px;">
+                    <h4>{{ form }}</h4>
+                </div>
+                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                    <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
