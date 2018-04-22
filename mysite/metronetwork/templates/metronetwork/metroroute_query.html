@@ -5,13 +5,13 @@
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
-                <div class="col-sm-4" style=" margin: auto; margin-left: 20px; padding: 10px;">
-                    <h4><label>Source Metro Station: </label>{{ form.uinpsrc }}</h4>
+                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
+                    <h4><label>Start Metro Station: </label>{{ form.uinpsrc }}</h4>
                 </div>
-                <div class="col-sm-4" style=" margin: auto; margin-left: 20px; padding: 10px;">
+                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
                     <h4><label>Dest. Metro Station: </label>{{ form.uinpdest }}</h4>
                 </div>
-                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                <div class="col-sm-1" style="margin: auto; padding: 10px;">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroroutequery' %}'">Find</button>
                 </div>
             </div>

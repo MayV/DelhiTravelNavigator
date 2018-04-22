@@ -1,44 +1,74 @@
 {% extends 'home/base_header_and_navbar.html' %}
 {% block body %}
+<head>
+    <style>
+        td, tr, th
+        {
+            border: 1px solid;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
 <body>
     <div class="container-fluid">
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
-                <div class="col-sm-4" style=" margin: auto; margin-left: 20px; padding: 10px;">
+                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
                     <h4><label>Source Metro Station: </label>{{ form.uinpsrc }}</h4>
                 </div>
-                <div class="col-sm-4" style=" margin: auto; margin-left: 20px; padding: 10px;">
+                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
                     <h4><label>Dest. Metro Station: </label>{{ form.uinpdest }}</h4>
                 </div>
-                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                <div class="col-sm-1" style="margin: auto; padding: 10px;">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroroutequery' %}'">Find</button>
                 </div>
             </div>
         </form>
         <div class="row row-buffer">
             <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Start Metro Station: {{ srcstation }}</h4>
+                <h4><b>Start Metro Station:</b> {{ srcstation }}</h4>
             </div>
             <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Dest. Metro Station: {{ deststation }}</h4>
+                <h4><b>Dest. Metro Station:</b> {{ deststation }}</h4>
             </div>
         </div>
+        <br><br>
+        <table style="width:100%">
+            <tr>
+                <th>Type</th>
+                <td>Sunday with Smart Card</td>
+                <td>Sunday with Token</td>
+                <td>Other days in Peak hours with Smart Card</td>
+                <td>Other days in Non Peak hours with Smart Card</td>
+                <td>Other days with Token</td>
+            </tr>
+            <tr>
+                <th>Cost (Rupees)</th>
+                <td>{{ cost.sun_card }}</td>
+                <td>{{ cost.sun_token }}</td>
+                <td>{{ cost.other_peakcard }}</td>
+                <td>{{ cost.other_nonpeakcard }}</td>
+                <td>{{ cost.other_token }}</td>
+            </tr>
+        </table>
+        <br><br>
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Best Routes: </h4>
+                <h2>Best Routes: </h2>
             </div>
         </div>
         <div class="row row-buffer">
             <div class="col-sm-11" style="">
                 {% for route in allRoutes %}
-                    <h5 style="margin-left: 50px;">
+                    <h4 style="margin-left: 50px; line-height: 40px;">
                         {% for stop in route%}
-                            {{ stop }}->
+                            {{ stop }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                         {% endfor %}
-
+                        END
                         <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
-                    </h5>
+                    </h4>
                 {% endfor %}
             </div>
         </div>

@@ -17,6 +17,9 @@ def get_busroutequery(request):
             blank_form = BusRouteForm()
             context = {'srcstop': uinpsrc, 'deststop': uinpdest, 'allRoutes': retval, 'form': blank_form}
             return render(request, 'busnetwork/display_busroute.html', context)
+        else:
+            context = {}
+            return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusRouteForm()
         context = {'form': blank_form}
@@ -32,6 +35,9 @@ def get_busquery(request):
             blank_form = BusForm()
             context = {'busDetails': retval, 'form': blank_form}
             return render(request, 'busnetwork/display_bus.html', context)
+        else:
+            context = {}
+            return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusForm()
         context = {'form': blank_form}
@@ -47,6 +53,9 @@ def get_busstopquery(request):
             blank_form = BusStopForm()
             context = {'busstopDetails': retval, 'form': blank_form}
             return render(request, 'busnetwork/display_busstop.html', context)
+        else:
+            context = {}
+            return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusStopForm()
         context = {'form': blank_form}

@@ -76,7 +76,15 @@ def main_route(uinpsrc, uinpdest):
     allPaths = basefunc(uinpsrc, uinpdest, shrtpath, 0, buses, busstops, busvisited, dp)
     for i in range(len(allPaths)):
         allPaths[i] = [uinpsrc]+allPaths[i]
+    minroutelen = 1000
+    for i in range(len(allPaths)):
+        if minroutelen > len(allPaths[i]):
+            minroutelen = len(allPaths[i])
+    bestPaths = []
+    for i in range(len(allPaths)):
+        if len(allPaths[i]) <= minroutelen:
+            bestPaths.append(allPaths[i])
     #Remove duplicate paths from list of list returned.
-    allPathsset = set(map(tuple, allPaths))
-    allPaths = map(list, allPathsset)
-    return allPaths
+    bestPathsset = set(map(tuple, bestPaths))
+    bestPaths = map(list, bestPathsset)
+    return bestPaths

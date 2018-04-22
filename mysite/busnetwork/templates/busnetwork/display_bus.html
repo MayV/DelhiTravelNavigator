@@ -5,7 +5,7 @@
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
-                <div class="col-sm-4" style=" margin: auto; margin-left: 50px; padding: 10px;">
+                <div class="col-sm-5" style=" margin: auto; margin-left: 50px; padding: 10px;">
                     <h4>{{ form }}</h4>
                 </div>
                 <div class="col-sm-3" style="margin: auto; padding: 10px;">
@@ -15,26 +15,27 @@
         </form>
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Bus Number: {{ busDetails.bus_id }}</h4>
+                <h4><b>Bus Number:</b> {{ busDetails.bus_id }}</h4>
             </div>
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Start Bus Stop: {{ busDetails.start_busstop }}</h4>
+                <h4><b>Start Bus Stop:</b> {{ busDetails.start_busstop }}</h4>
             </div>
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>End Bus Stop: {{ busDetails.end_busstop }}</h4>
+                <h4><b>End Bus Stop:</b> {{ busDetails.end_busstop }}</h4>
             </div>
         </div>
+        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>All Bus Stops:</h4>
+                <h2>All Bus Stops:</h2>
             </div>
             <div class="col-sm-8" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h5>
+                <h4 style="line-height: 40px;">
                     {% for stp in busDetails.all_busstops %}
-                        {{ stp }}->
+                        {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                     {% endfor %}
                     END
-                </h5>
+                </h4>
             </div>
         </div>
         <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">

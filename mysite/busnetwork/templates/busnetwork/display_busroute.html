@@ -18,27 +18,28 @@
         </form>
         <div class="row row-buffer">
             <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Start Bus Stop: {{ srcstop }}</h4>
+                <h4><b>Start Bus Stop:</b> {{ srcstop }}</h4>
             </div>
             <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Dest. Bus Stop: {{ deststop }}</h4>
+                <h4><b>Dest. Bus Stop:</b> {{ deststop }}</h4>
             </div>
         </div>
+        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Best Routes: </h4>
+                <h2>Best Routes: </h2>
             </div>
         </div>
         <div class="row row-buffer">
             <div class="col-sm-11" style="">
                 {% for route in allRoutes %}
-                    <h5 style="margin-left: 50px;">
+                    <h4 style="margin-left: 50px; line-height: 40px;">
                         {% for stop in route%}
-                            {{ stop }}->
+                            {{ stop }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                         {% endfor %}
                         END
                         <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
-                    </h5>
+                    </h4>
                 {% endfor %}
             </div>
         </div>

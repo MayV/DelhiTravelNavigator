@@ -27,38 +27,28 @@ def main_route(uinpsrc, uinpdest):
     src = grph[uinpsrc]     #Object of Graph type.
     dest = grph[uinpdest]   #Object of Graph type.
     stationvisited = {}    #Marks the stations which are visited.
-    #dp = {}     #To store a subpath from a station.
     stationvisited[src.name]=True
     retval = getallRoutes(src, grph, stationvisited, dest)
-    #for i in range(len(retval)):
-     #   retval[i] = retval[i].insert(uinpsrc)
-
-    minimum = 1000
-
+    minroutelen = 1000
     for i in range(len(retval)):
-        length = len(retval[i])
-        if length < minimum:
-            minimum = length
-    ans = []
-    temp = len(retval)
-    for i in range(temp):
-
-        if len(retval[i])  <= minimum + 5:
-            ans.append(retval[i])
-
-    minimum = 100000
-    for i in range(len(ans)):
+        if minroutelen > len(retval[i]):
+            minroutelen = len(retval[i])
+    bestroutes = []
+    for i in range(len(retval)):
+        if len(retval[i]) <= minroutelen + 5:
+            bestroutes.append(retval[i])
+    mindist = 10000
+    for i in range(len(bestroutes)):
         dist = 0
-        for j in range(len(ans[i])-1):
-            u = grph[ans[i][j]]
-            next1 = ans[i][j+1]
+        for j in range(len(bestroutes[i])-1):
+            u = grph[bestroutes[i][j]]
+            v = bestroutes[i][j+1]
             for k in range(len(u.adj_List)):
-                if u.adj_List[k] == next1:
+                if u.adj_List[k] == v:
                     dist = dist + u.dist_List[k]
                     break
-
-        if dist < minimum:
-            minimum = dist
-    distance = str(float(minimum/10.0))
-    ans.append([distance])
-    return ans
+        if dist < mindist:
+            mindist = dist
+    actualdist = str(float(mindist/10.0))
+    bestroutes.append([actualdist])
+    return bestroutes

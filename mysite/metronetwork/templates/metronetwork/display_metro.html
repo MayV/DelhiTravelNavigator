@@ -1,6 +1,14 @@
 {% extends 'home/base_header_and_navbar.html' %}
 {% block body %}
 <body>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
     <div class="container-fluid">
         <form method="post">
             {% csrf_token %}
@@ -15,45 +23,49 @@
         </form>
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Metro Line: {{ metroDetails.metro_color }}</h4>
+                <h4><b>Metro Line:</b> {{ metroDetails.metro_color }}</h4>
             </div>
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Start Station: {{ metroDetails.start_station }}</h4>
+                <h4><b>Start Station:</b> {{ metroDetails.start_station }}</h4>
             </div>
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>Dest. Station: {{ metroDetails.end_station }}</h4>
+                <h4><b>Dest. Station:</b> {{ metroDetails.end_station }}</h4>
             </div>
         </div>
+        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
         <div class="row row-buffer">
             <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4>All Metro Stations:</h4>
+                <h2>All Metro Stations:</h2>
             </div>
             <div class="col-sm-8" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h5>
+                <h4 style="line-height: 40px;">
                     {% for stp in metroDetails.all_stations %}
-                        {{ stp }}->
+                        {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                     {% endfor %}
                     END
-                </h5>
-                <h5>
+                </h4>
+                <h4 style="line-height: 40px;">
                     {% if metroDetails.sub_stations1 %}
                         {% for stp in metroDetails.sub_stations1 %}
-                            {{ stp }}->
+                            {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                         {% endfor %}
                         END
                     {% endif %}
-                </h5>
-                <h5>
+                </h4>
+                <h4 style="line-height: 40px;">
                     {% if metroDetails.sub_stations2 %}
                         {% for stp in metroDetails.sub_stations2 %}
-                            {{ stp }}->
+                            {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                         {% endfor %}
                         END
                     {% endif %}
-                </h5>
+                </h4>
             </div>
         </div>
         <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
     </div>
+    <script>
+        $('#id_uinpsrc').addAttribute
+    </script>
 </body>
 {% endblock %}
