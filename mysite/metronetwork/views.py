@@ -10,20 +10,25 @@ def get_metroroutequery(request):
     if request.method=='POST':  #if post meathod process form data.
         form = MetroRouteForm(request.POST)
         if form.is_valid():
+            
             uinpsrc = form.cleaned_data.get("uinpsrc").upper()
             uinpdest = form.cleaned_data.get("uinpdest").upper()
-            retval = main_route(uinpsrc, uinpdest)
-            distance = retval[-1][0]
-            retval = retval[0:len(retval)-1]
-            travelcost = {}
-            travelcost['sun_card'] = sunday_card(float(distance))
-            travelcost['sun_token'] = sunday_token(float(distance))
-            travelcost['other_peakcard'] = otherday_peakcard(float(distance))
-            travelcost['other_nonpeakcard'] = otherday_nonpeakcard(float(distance))
-            travelcost['other_token'] = otherday_token(float(distance))
-            blank_form = MetroRouteForm()
-            context = {'srcstation': uinpsrc, 'deststation': uinpdest, 'allRoutes': retval, 'cost': travelcost, 'form': blank_form}
-            return render(request, 'metronetwork/display_metroroute.html', context)
+            if form.clean_message(uinpsrc, uinpdest) != -1:
+                retval = main_route(uinpsrc, uinpdest)
+                distance = retval[-1][0]
+                retval = retval[0:len(retval)-1]
+                travelcost = {}
+                travelcost['sun_card'] = sunday_card(float(distance))
+                travelcost['sun_token'] = sunday_token(float(distance))
+                travelcost['other_peakcard'] = otherday_peakcard(float(distance))
+                travelcost['other_nonpeakcard'] = otherday_nonpeakcard(float(distance))
+                travelcost['other_token'] = otherday_token(float(distance))
+                blank_form = MetroRouteForm()
+                context = {'srcstation': uinpsrc, 'deststation': uinpdest, 'allRoutes': retval, 'cost': travelcost, 'form': blank_form}
+                return render(request, 'metronetwork/display_metroroute.html', context)
+            else:
+                context = {}
+                return render(request, 'metronetwork/wrong_input.html', context)
         else:
             context = {}
             return render(request, 'metronetwork/wrong_input.html', context)
@@ -38,10 +43,14 @@ def get_metroquery(request):
         form = MetroForm(request.POST)
         if form.is_valid():
             uinpmetro = form.cleaned_data.get("uinpmetro").upper()
-            retval = main_metro(uinpmetro)
-            blank_form = MetroForm()
-            context = {'metroDetails': retval, 'form': blank_form}
-            return render(request, 'metronetwork/display_metro.html', context)
+            if form.clean_message(uinpmetro ) != -1:
+                retval = main_metro(uinpmetro)
+                blank_form = MetroForm()
+                context = {'metroDetails': retval, 'form': blank_form}
+                return render(request, 'metronetwork/display_metro.html', context)
+            else:
+                context = {}
+                return render(request, 'metronetwork/wrong_input.html', context)
         else:
             context = {}
             return render(request, 'metronetwork/wrong_input.html', context)
