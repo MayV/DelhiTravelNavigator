@@ -14,5 +14,5 @@ $ cd DelhiTravelNavigator
 After that, you must:
 * Install the dependencies (Django framework)
 * Have access to Sqlite databse
-  * After installing, you need to run the migration command inside the project directory (`python manage.py migrate`)
+* After installing, you need to run the migration command inside the project directory (`python manage.py migrate`)
 * And finally, start the server (`python manage.py runserver`)
