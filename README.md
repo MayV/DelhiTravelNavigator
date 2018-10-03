@@ -3,12 +3,20 @@ A web application which gives shortest route as well as multiple best routes for
 
 # Frameworks/ Languages/ Database
 Django web framework, Python, HTML, CSS and Sqlite database.
-# Cloning and getting started:
+# Cloning Install Virtualenv getting started:
+
+```bash
+$ pip install virtualenv
+$ virtualenv my_project
+$ cd my_project_folder
+```
+
 To clone, you just need to access your git/terminal and use the command below:
 
 ```bash
 $ git clone https://github.com/MayV/DelhiTravelNavigator.git
 $ cd DelhiTravelNavigator
+
 ```
 
 After that, you must:
