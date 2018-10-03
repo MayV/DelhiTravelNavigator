@@ -16,3 +16,26 @@ After that, you must:
 * Have access to Sqlite databse
 * After installing, you need to run the migration command inside the project directory (`python manage.py migrate`)
 * And finally, start the server (`python manage.py runserver`)
+
+# Running in Virtual Environment
+If pip is not installed:
+Download: [pip](https://bootstrap.pypa.io/get-pip.py)
+Execute this command in the same folder in which you have downloaded get-pip.py:
+```
+$ python get-pip.py
+```
+Now use pip to install virtualenv
+```
+$ pip install --user pipenv
+```
+
+To create a virtualenv, run:
+```
+  $ virtualenv folder_name
+```
+
+To start using that virtualenv, run:
+```
+$ source folder_name/bin/activate
+```
+You can use ```$ deactivate``` to if close this virtualenv.
