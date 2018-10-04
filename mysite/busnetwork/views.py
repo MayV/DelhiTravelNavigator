@@ -13,10 +13,15 @@ def get_busroutequery(request):
         if form.is_valid():
             uinpsrc = form.cleaned_data.get("uinpsrc").upper()
             uinpdest = form.cleaned_data.get("uinpdest").upper()
-            retval = main_route(uinpsrc, uinpdest)
-            blank_form = BusRouteForm()
-            context = {'srcstop': uinpsrc, 'deststop': uinpdest, 'allRoutes': retval, 'form': blank_form}
-            return render(request, 'busnetwork/display_busroute.html', context)
+
+            if form.clean_message(uinpsrc, uinpdest) !=-1:
+                retval = main_route(uinpsrc, uinpdest)
+                blank_form = BusRouteForm()
+                context = {'srcstop': uinpsrc, 'deststop': uinpdest, 'allRoutes': retval, 'form': blank_form}
+                return render(request, 'busnetwork/display_busroute.html', context)
+            else:
+                context = {}
+                return render(request, 'busnetwork/wrong_input.html', context)
         else:
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
@@ -31,10 +36,15 @@ def get_busquery(request):
         form = BusForm(request.POST)
         if form.is_valid():
             uinpbus = form.cleaned_data.get("uinpbus").upper()
-            retval = main_bus(uinpbus)
-            blank_form = BusForm()
-            context = {'busDetails': retval, 'form': blank_form}
-            return render(request, 'busnetwork/display_bus.html', context)
+
+            if  form.clean_message(uinpbus) !=-1:
+                retval = main_bus(uinpbus)
+                blank_form = BusForm()
+                context = {'busDetails': retval, 'form': blank_form}
+                return render(request, 'busnetwork/display_bus.html', context)
+            else:
+                context = {}
+                return render(request, 'busnetwork/wrong_input.html', context)
         else:
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
@@ -49,10 +59,14 @@ def get_busstopquery(request):
         form = BusStopForm(request.POST)
         if form.is_valid():
             uinpbusstop = form.cleaned_data.get("uinpbusstop").upper()
-            retval = main_busstop(uinpbusstop)
-            blank_form = BusStopForm()
-            context = {'busstopDetails': retval, 'form': blank_form}
-            return render(request, 'busnetwork/display_busstop.html', context)
+            if form.clean_message(uinpbusstop) != -1:
+                retval = main_busstop(uinpbusstop)
+                blank_form = BusStopForm()
+                context = {'busstopDetails': retval, 'form': blank_form}
+                return render(request, 'busnetwork/display_busstop.html', context)
+            else:
+                context = {}
+                return render(request, 'busnetwork/wrong_input.html', context)
         else:
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
