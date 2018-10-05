@@ -27,7 +27,8 @@ def get_busroutequery(request):
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusRouteForm()
-        context = {'form': blank_form}
+        busstop_set = blank_form.get_all()
+        context = {'form': blank_form, 'busstop':busstop_set}
         return render(request, 'busnetwork/busroute_query.html', context)
 
 
@@ -50,7 +51,8 @@ def get_busquery(request):
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusForm()
-        context = {'form': blank_form}
+        bus_set = blank_form.get_all()
+        context = {'form': blank_form, 'bus':bus_set}
         return render(request, 'busnetwork/bus_query.html', context)
 
 
@@ -72,7 +74,8 @@ def get_busstopquery(request):
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusStopForm()
-        context = {'form': blank_form}
+        busstop_set = blank_form.get_all()
+        context = {'form': blank_form, 'busstop':busstop_set}
         return render(request, 'busnetwork/busstop_query.html', context)
 
 
