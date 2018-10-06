@@ -10,9 +10,10 @@ def get_metroroutequery(request):
     if request.method=='POST':  #if post meathod process form data.
         form = MetroRouteForm(request.POST)
         if form.is_valid():
-            
+
             uinpsrc = form.cleaned_data.get("uinpsrc").upper()
             uinpdest = form.cleaned_data.get("uinpdest").upper()
+
             if form.clean_message(uinpsrc, uinpdest) != -1:
                 retval = main_route(uinpsrc, uinpdest)
                 distance = retval[-1][0]
@@ -34,7 +35,9 @@ def get_metroroutequery(request):
             return render(request, 'metronetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = MetroRouteForm()
-        context = {'form': blank_form}
+        station_set = blank_form.get_all()
+        context = {'form': blank_form , 'station': station_set}
+        print(station_set)
         return render(request, 'metronetwork/metroroute_query.html', context)
 
 
@@ -56,7 +59,9 @@ def get_metroquery(request):
             return render(request, 'metronetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = MetroForm()
-        context = {'form': blank_form}
+        color_set  = blank_form.get_all()
+        context = {'form': blank_form, 'color':color_set}
+        #print(color_set)
         return render(request, 'metronetwork/metro_query.html', context)
 
 
