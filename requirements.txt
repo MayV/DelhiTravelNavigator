@@ -1,0 +1,7 @@
+Django==2.0.2
+django-autocomplete-light==3.2.10
+django-mysql==2.2.0
+mysqlclient==1.3.12
+pytz==2017.3
+six==1.11.0
+virtualenv==15.1.0
