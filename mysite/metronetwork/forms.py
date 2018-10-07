@@ -1,14 +1,17 @@
 from django import forms
-from .models import Metro
+from .models import Metro,Graph
 from django.shortcuts import render
 
 class MetroRouteForm(forms.Form):
 	uinpsrc = forms.CharField(label="Source Metro Station ", max_length=100)
 	uinpdest = forms.CharField(label="Destination Metro Station ", max_length=100)
 
+	uinpsrc.widget.attrs.update({'list':'station'})
+	uinpdest.widget.attrs.update({'list':'station'})
+
 	def clean_message(self, unipsrc, unipdest):
 
-		#uinpdest = self.cleaned_data.get("uinpdest").upper()	
+		#uinpdest = self.cleaned_data.get("uinpdest").upper()
 		#unipsrc = self.cleaned_data.get("uinpsrc").upper()
 		flag1 = 0
 		flag2 = 0
@@ -25,10 +28,18 @@ class MetroRouteForm(forms.Form):
 		else:
 			return 1
 
+	def get_all(self):
+		station_set = Graph.objects.all()
+		station = set()
+		for obj in station_set:
+			station.add(obj.name)
+		return station
 
 
 class MetroForm(forms.Form):
 	uinpmetro = forms.CharField(label="Enter Metro Line Colour ", max_length=100)
+
+	uinpmetro.widget.attrs.update({'list': 'colour'})
 
 	def clean_message(self, unipmetro) :
 		flag = 0
@@ -42,3 +53,10 @@ class MetroForm(forms.Form):
 			return -1
 		else:
 			return 1
+
+	def get_all(self):
+		metro_set = Metro.objects.all()
+		color_set = set()
+		for obj in metro_set:
+			color_set.add(obj.color)
+		return color_set
