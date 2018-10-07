@@ -9,7 +9,7 @@ class BusRouteForm(forms.Form):
     uinpsrc.widget.attrs.update({'list':'busstop'})
     uinpdest.widget.attrs.update({'list':'busstop'})
 
-    def clean_message(self,uinpsrc,unipdtest):
+    def clean_message(self,uinpsrc,uinpdest):
         flag_d=0
         flag_s=0
         bus_set = Bus.objects.all()
