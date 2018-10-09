@@ -9,33 +9,316 @@
             padding: 10px;
         }
     </style>
+
+<style type="text/css">
+
+    #cd-timeline{
+        position: relative;
+        padding: 2em 0;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    
+    .cd-timeline-block {
+        position: relative;
+        margin: 2em 0;
+        overflow: visible;
+    }
+    
+    .cd-timeline-block:after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        z-index= -1;
+        left: 18px;
+        height: 100%;
+        width: 4px;
+        background: #ccc;
+    }
+    
+    .cd-timeline-img {
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        background-color: #eee;
+        float: left;
+    }
+    
+    .cd-timeline-img i {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        margin-left: -4px;
+        margin-top: -6px;
+    }
+    
+    .cd-timeline-img:hover {
+        background-color: #7c7191;
+        cursor: pointer;
+    }
+    
+    
+    .cd-timeline-content {
+        background-color: #eee;
+        border-radius: 0.50em;
+        margin-left: 60px;
+        padding-left: 10px;
+        padding-top: 5px;
+        height: 36px;
+        width: 300px;
+    }
+    
+    .cd-timeline-content p {
+        font-weight: 600;
+        color: white;
+        line-height: 24px;
+        padding: auto;
+    }
+    
+    
+        .form-style {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            height: 100%;
+            width: 70%;
+        }
+    
+        input {
+            width: 100%;
+            height: 50px;
+            border: 2px solid #dadada;
+            border-radius: 4px;
+            transition: all 0.5s;
+        }
+    
+        input:focus, input:hover{
+            outline:none;
+            border-color: #E8950C;
+            box-shadow: 0 0 5px #E8950C;
+        }
+    
+        .form-button {
+            margin-top: 20px;
+            font-weight: 500;
+            float: left;
+            padding-left: 15px;
+        }
+    
+        .form-button * {
+            font-weight: 500;
+            height: 50px;
+            width: 100px;
+        }
+    
+        hr {
+            height: 1px;
+            background: #333; 
+            background-image: linear-gradient(to right, #ccc, #333, #ccc);
+        }
+    
+        /*style="margin: auto; margin-left: 50px; padding: 10px;"*/
+    
+        .info {
+            padding: 0 5px 0 5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    
+        .info h4 {
+            margin: 0px;
+            font-weight: 500;
+        }
+    
+        .list-head {
+            width: 100%;
+        }
+    
+        .stat-list {
+            float: left;
+            margin: 0;
+            padding: 5px;
+            display: inline-block;
+            width: 33.33%;
+        }
+    
+        ._1 .cd-timeline-img, ._1 .cd-timeline-content {
+             background: linear-gradient(to right, #18357a 0%,#265baf 100%);
+        }
+    
+        ._2 .cd-timeline-img, ._2 .cd-timeline-content  {
+            background: linear-gradient(to right, #930000 0%,#cc5555 100%);
+        }
+    
+        ._3 .cd-timeline-img, ._3 .cd-timeline-content  {
+            background: linear-gradient(to right, #f8b500 0%,#f8b500 0%,#fccd4d 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+    
+        .icn {
+            font-size: 10px;
+            color:#eee;
+            font-weight: bold;
+        }
+
+        * {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: sans-serif;
+}
+
+a {
+	margin: 0px;
+	transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  border-width: 2px;
+  border-color: #363636;
+  margin: 0 auto;
+  position: relative;
+}
+table * {
+  position: relative;
+}
+table td, table th {
+  padding-left: 8px;
+}
+
+table td, table th {
+  text-align: left;
+}
+table td.l, table th.l {
+  text-align: right;
+}
+table td.c, table th.c {
+  text-align: center;
+}
+table td.r, table th.r {
+  text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  table {
+    display: block;
+  }
+  table > *, table tr, table td, table th {
+    display: block;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody tr {
+    height: auto;
+    padding: 37px 0;
+  }
+  table tbody tr td {
+    padding-left: 40% !important;
+    margin-bottom: 24px;
+  }
+  table tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  table tbody tr td:before {
+    font-size: 14px;
+    color: #999999;
+    line-height: 1.2;
+    font-weight: unset;
+    position: absolute;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+
+
+  tbody tr {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-table100 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+    </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <form method="post">
-            {% csrf_token %}
+        <div class="container form-style">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row row-buffer">
+                        
+                        <div class="col-sm-8 col-lg-6">
+                            <h2><label>Start Metro Station: </label></h2>
+                        </div>
+                        <div class="col-sm-12 col-lg-8 input-box">
+                            {{ form.uinpsrc }}
+                        </div>
+                        <div class="col-sm-8 col-lg-6">
+                            <h2><label>Dest. Metro Station: </label></h2>
+                        </div>
+                        <div class="col-sm-12 col-lg-8 input-box">
+                            {{ form.uinpdest }}
+                        </div>
+        
+                        <datalist id="station">
+                          {% for obj in  station %}
+                            <option value="{{obj}}">
+                          {% endfor %}
+                        </datalist>
+                        </div>
+                        <div class="row row-buffer">
+                            <div class="col-sm-3 col-xs-6 form-button">
+                                <button type="submit" class="btn btn-info btn-block" onClick="  location.href='{% url 'get_metroroutequery' %}'">Find</button>
+                            </div>
+                    </div>
+                </form>
+        
+            <hr>
+
             <div class="row row-buffer">
-                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
-                    <h4><label>Source Metro Station: </label>{{ form.uinpsrc }}</h4>
+                <div class="col-sm-6 info">
+                    <h3><b>Start Metro Station</b></h3> <br> <h4>{{ srcstation }}</h4>
                 </div>
-                <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
-                    <h4><label>Dest. Metro Station: </label>{{ form.uinpdest }}</h4>
-                </div>
-                <div class="col-sm-1" style="margin: auto; padding: 10px;">
-                    <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroroutequery' %}'">Find</button>
+                <div class="col-sm-6 info">
+                    <h3><b>Dest. Metro Station</b></h3> <br> <h4>{{ deststation }}</h4>
                 </div>
             </div>
-        </form>
-        <div class="row row-buffer">
-            <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4><b>Start Metro Station:</b> {{ srcstation }}</h4>
-            </div>
-            <div class="col-sm-5" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4><b>Dest. Metro Station:</b> {{ deststation }}</h4>
-            </div>
-        </div>
+    
+            <hr>
+
         <br><br>
-        <table style="width:100%">
+        <table>
             <tr>
                 <th>Type</th>
                 <td>Sunday with Smart Card</td>
@@ -54,12 +337,11 @@
             </tr>
         </table>
         <br><br>
-        <div class="row row-buffer">
-            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h2>Best Routes: </h2>
+        <div class="row">
+            <div class="list-head">
+                <h2>All Metro Stations:</h2>
             </div>
-        </div>
-        <div class="row row-buffer">
+
             <div class="col-sm-11" style="">
                 {% for route in allRoutes %}
                     <h4 style="margin-left: 50px; line-height: 40px;">
@@ -67,11 +349,12 @@
                             {{ stop }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
                         {% endfor %}
                         END
-                        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
+                        <hr>
                     </h4>
                 {% endfor %}
             </div>
         </div>
     </div>
+</div>
 </body>
 {% endblock %}

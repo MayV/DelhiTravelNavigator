@@ -1,19 +1,65 @@
 {% extends 'home/base_header_and_navbar.html' %}
 {% block body %}
+<style type="text/css">
+	
+	.form-style {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		height: 100%;
+		width: 70%;
+	}
+
+	input {
+		width: 100%;
+		height: 50px;
+		border: 2px solid #dadada;
+		border-radius: 4px;
+		transition: all 0.5s;
+	}
+
+	input:focus, input:hover{
+		outline:none;
+		border-color: #E8950C;
+		box-shadow: 0 0 5px #E8950C;
+	}
+
+	.form-button {
+		margin-top: 20px;
+		font-weight: 500;
+		float: left;
+		padding-left: 15px;
+	}
+
+	.form-button * {
+		font-weight: 500;
+		height: 50px;
+		width: 100px;
+	}
+
+</style>
 <body>
-    <div class="container-fluid">
+    <div class="container form-style">
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
-                <div class="col-sm-6" style=" margin: auto; margin-left: 50px; padding: 10px;">
-                    <h4>{{ form }}</h4>
+            
+                <div class="col-sm-8 col-lg-6">
+                    <h2><label>Enter Metro Line Colour</label></h2>
                 </div>
+                <div class="col-sm-12 col-lg-8 input-box">
+                	{{ form.uinpmetro }}
+                </div>
+
+                
                 <datalist id="colour">
                   {% for obj in  color %}
                     <option value="{{obj}}">
                   {% endfor %}
                 </datalist>
-                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+            
+            </div>
+            <div class="row row-buffer">
+                <div class="form-button">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>
                 </div>
             </div>

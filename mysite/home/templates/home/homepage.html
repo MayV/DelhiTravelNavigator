@@ -6,7 +6,33 @@
         {
             margin-top: 20px;
             margin-bottom: 20px;
+            height: 150px;
         }
+
+        .cards
+        {
+          background-color: lavender;
+          border-radius: 3px;
+          margin: 5px 20px;
+          padding: 10px 10px 10px 10px;
+          height: 100%;
+        }
+
+        .btn-block {
+          width: 100px;
+          position: absolute;
+          left: 10px;
+          bottom: 10px;
+        }
+
+        .btn {
+          font-weight: 600;
+        }
+        /*style="margin:30px; padding:20px; background-color:lavender;>
+        style="margin:30px 50px 30px 50px; padding:20px; background-color:lavender;"
+        style="margin:30px; padding:20px; background-color:lavender;"
+        style="margin:30px 55px 30px 55px; padding:20px; background-color:lavender;"
+        style="margin:30px 55px 30px 55px; padding:20px; background-color:lavender;"*/
     </style>
 </head>
 <body>
@@ -14,29 +40,29 @@
         <h1>Hello Delhi Traveller!</h1>
         <p>This website aims to ease the bus and metro travel of Delhi Tourist by provide them all relevant details about their travel.</p>
         <div class="row row-buffer">
-            <div class="col-sm-3" style="margin:30px; padding:20px; background-color:lavender;">
+            <div class="col-lg-3 col-sm-5 col-xs-8 cards" >
                 <h4>Find Route Between Bus Stops</h4>
                 <p>Gives the Shortest Path between the source bus stop and destination bus stop</p>
                 <button type="button" class="btn btn-info btn-block" onClick="location.href='{% url 'get_busroutequery' %}'">Find</button>
             </div>
-            <div class="col-sm-4" style="margin:30px 50px 30px 50px; padding:20px; background-color:lavender;">
+            <div class="col-lg-3 col-sm-5 col-xs-8 cards" >
                 <h4>Get Bus Details</h4>
                 <p>Gives the details of the bus including start bus stop, end bus stops and all the bus stops visited by the bus.</p>
                 <button type="button" class="btn btn-info btn-block" onClick="location.href='{% url 'get_busquery' %}'">Get</button>
             </div>
-            <div class="col-sm-3" style="margin:30px; padding:20px; background-color:lavender;">
+            <div class="col-lg-3 col-sm-5 col-xs-8 cards" >
                 <h4>Get Bus Stop Details</h4>
                 <p>Gives the buses that visit the bus stop.<br></br></p>
                 <button type="button" class="btn btn-info btn-block" onClick="location.href='{% url 'get_busstopquery' %}'">Get</button>
             </div>
         </div>
         <div class="row row-buffer">
-            <div class="col-sm-5" style="margin:30px 55px 30px 55px; padding:20px; background-color:lavender;">
+            <div class="col-lg-3 col-sm-5 col-xs-8 cards" >
                 <h4>Find Route Between Metro Stations</h4>
                 <p>Gives the most efficient path between the metro stations.</p>
                 <button type="button" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroroutequery' %}'">Find</button>
             </div>
-            <div class="col-sm-5 col-md-offset-2" style="margin:30px 55px 30px 55px; padding:20px; background-color:lavender;">
+            <div class="col-lg-3 col-sm-5 col-xs-8 cards">
                 <h4>Get Metro Line Details</h4>
                 <p>Gives details about metro line including all metro stations on metro line.</p>
                 <button type="button" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>

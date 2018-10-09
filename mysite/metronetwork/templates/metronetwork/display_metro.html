@@ -1,68 +1,271 @@
 {% extends 'home/base_header_and_navbar.html' %}
 {% block body %}
 <body>
-    <script
+<script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <script
+  crossorigin="anonymous">
+</script>
+
+<script
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script>
-    <div class="container-fluid">
+  crossorigin="anonymous">
+</script>
+<style type="text/css">
+
+#cd-timeline{
+    position: relative;
+    padding: 2em 0;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/*#cd-timeline::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%;
+    width: 4px;
+    background: #ccc;
+}*/
+
+.cd-timeline-block {
+    position: relative;
+    margin: 2em 0;
+    overflow: visible;
+}
+
+.cd-timeline-block:after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    z-index= -1;
+    left: 18px;
+    height: 100%;
+    width: 4px;
+    background: #ccc;
+}
+
+.cd-timeline-img {
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    background-color: #eee;
+    float: left;
+}
+
+.cd-timeline-img i {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -4px;
+    margin-top: -6px;
+}
+
+.cd-timeline-img:hover {
+    background-color: #7c7191;
+    cursor: pointer;
+}
+
+
+.cd-timeline-content {
+    background-color: #eee;
+    border-radius: 0.50em;
+    margin-left: 60px;
+    padding-left: 10px;
+    padding-top: 5px;
+    height: 36px;
+    width: 300px;
+}
+
+.cd-timeline-content p {
+    font-weight: 600;
+    color: white;
+    line-height: 24px;
+    padding: auto;
+}
+
+
+    .form-style {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: 100%;
+        width: 70%;
+    }
+
+    input {
+        width: 100%;
+        height: 50px;
+        border: 2px solid #dadada;
+        border-radius: 4px;
+        transition: all 0.5s;
+    }
+
+    input:focus, input:hover{
+        outline:none;
+        border-color: #E8950C;
+        box-shadow: 0 0 5px #E8950C;
+    }
+
+    .form-button {
+        margin-top: 20px;
+        font-weight: 500;
+        float: left;
+        padding-left: 15px;
+    }
+
+    .form-button * {
+        font-weight: 500;
+        height: 50px;
+        width: 100px;
+    }
+
+    hr {
+        height: 1px;
+        background: #333; 
+        background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    }
+
+    /*style="margin: auto; margin-left: 50px; padding: 10px;"*/
+
+    .info {
+        padding: 0 5px 0 5px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .info h4 {
+        margin: 0px;
+        font-weight: 500;
+    }
+
+    .list-head {
+        width: 100%;
+    }
+
+    .stat-list {
+        float: left;
+        margin: 0;
+        padding: 5px;
+        display: inline-block;
+        width: 33.33%;
+    }
+
+    ._1 .cd-timeline-img, ._1 .cd-timeline-content {
+         background: linear-gradient(to right, #18357a 0%,#265baf 100%);
+    }
+
+    ._2 .cd-timeline-img, ._2 .cd-timeline-content  {
+        background: linear-gradient(to right, #930000 0%,#cc5555 100%);
+    }
+
+    ._3 .cd-timeline-img, ._3 .cd-timeline-content  {
+        background: linear-gradient(to right, #f8b500 0%,#f8b500 0%,#fccd4d 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+
+    .icn {
+        font-size: 10px;
+        color:#eee;
+        font-weight: bold;
+    }
+    </style>
+    
+    <div class="container form-style">
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
-                <div class="col-sm-6" style=" margin: auto; margin-left: 50px; padding: 10px;">
-                    <h4>{{ form }}</h4>
+            
+                <div class="col-sm-8 col-lg-6">
+                    <h2><label>Enter Metro Line Colour</label></h2>
                 </div>
-                <div class="col-sm-3" style="margin: auto; padding: 10px;">
+                <div class="col-sm-12 col-lg-8 input-box">
+                    {{ form.uinpmetro }}
+                </div>
+
+                
+                <datalist id="colour">
+                  {% for obj in  color %}
+                    <option value="{{obj}}">
+                  {% endfor %}
+                </datalist>
+            
+            </div>
+            <div class="row row-buffer">
+                <div class="form-button">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>
                 </div>
             </div>
         </form>
+
+        <hr>
+
         <div class="row row-buffer">
-            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4><b>Metro Line:</b> {{ metroDetails.metro_color }}</h4>
+            <div class="col-sm-4 info">
+                <h3><b>Metro Line</b></h3> <br> <h4>{{ metroDetails.metro_color }}</h4>
             </div>
-            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4><b>Start Station:</b> {{ metroDetails.start_station }}</h4>
+            <div class="col-sm-4 info">
+                <h3><b>Start Station</b></h3> <br> <h4>{{ metroDetails.start_station }}</h4>
             </div>
-            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4><b>Dest. Station:</b> {{ metroDetails.end_station }}</h4>
+            <div class="col-sm-4 info">
+                <h3><b>Dest. Station</b></h3> <br> <h4>{{ metroDetails.end_station }}</h4>
             </div>
         </div>
-        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
-        <div class="row row-buffer">
-            <div class="col-sm-3" style="margin: auto; margin-left: 50px; padding: 10px;">
+
+        <hr>
+
+        <div class="row ">
+            <div class="list-head">
                 <h2>All Metro Stations:</h2>
             </div>
-            <div class="col-sm-8" style="margin: auto; margin-left: 50px; padding: 10px;">
-                <h4 style="line-height: 40px;">
+            <br>
+            <div style="width:100%">
+                <section id="cd-timeline" class="cd-container">
+                    <div class="stat-list _1">
                     {% for stp in metroDetails.all_stations %}
-                        {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
+                        <div class="cd-timeline-block">
+                            <div class="cd-timeline-img"><i class="fa fa-map-marker icn" aria-hidden="true"></i></div>
+                            <div class="cd-timeline-content"><p>{{ stp }}</p></div>
+                        </div>
                     {% endfor %}
-                    END
-                </h4>
-                <h4 style="line-height: 40px;">
+                    <div class="cd-timeline-img"><i class="fa fa-ban icn" aria-hidden="true"></i></div>
+                    </div>
+                    
+                    <div class="stat-list _2">
                     {% if metroDetails.sub_stations1 %}
                         {% for stp in metroDetails.sub_stations1 %}
-                            {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img"><i class="fa fa-map-marker icn" aria-hidden="true"></i></div>
+                                <div class="cd-timeline-content"><p>{{ stp }}</p></div>
+                            </div>
                         {% endfor %}
-                        END
+                        <div class="cd-timeline-img"><i class="fa fa-ban" aria-hidden="true"></i></div>    
                     {% endif %}
-                </h4>
-                <h4 style="line-height: 40px;">
+                    </div>
+
+                    <div class="stat-list _3">
                     {% if metroDetails.sub_stations2 %}
                         {% for stp in metroDetails.sub_stations2 %}
-                            {{ stp }}&nbsp;&nbsp;&rarr;&nbsp;&nbsp;
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img"><i class="fa fa-map-marker icn" aria-hidden="true"></i></div>
+                                <div class="cd-timeline-content"><p>{{ stp }}</p></div>
+                            </div>
                         {% endfor %}
-                        END
+                        <div class="cd-timeline-img"><i class="fa fa-ban" aria-hidden="true"></i></div> 
                     {% endif %}
-                </h4>
+                    </div>
+
+                </section>
             </div>
         </div>
-        <hr style="height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
+        <hr>
     </div>
     <script>
         $('#id_uinpsrc').addAttribute

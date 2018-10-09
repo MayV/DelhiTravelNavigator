@@ -6,8 +6,8 @@ class MetroRouteForm(forms.Form):
 	uinpsrc = forms.CharField(label="Source Metro Station ", max_length=100)
 	uinpdest = forms.CharField(label="Destination Metro Station ", max_length=100)
 
-	uinpsrc.widget.attrs.update({'list':'station'})
-	uinpdest.widget.attrs.update({'list':'station'})
+	uinpsrc.widget.attrs.update({'list':'station', 'class':'text-box'})
+	uinpdest.widget.attrs.update({'list':'station','class':'text-box'})
 
 	def clean_message(self, unipsrc, unipdest):
 
@@ -39,7 +39,7 @@ class MetroRouteForm(forms.Form):
 class MetroForm(forms.Form):
 	uinpmetro = forms.CharField(label="Enter Metro Line Colour ", max_length=100)
 
-	uinpmetro.widget.attrs.update({'list': 'colour'})
+	uinpmetro.widget.attrs.update({'list': 'colour', 'class':'text-box'})
 
 	def clean_message(self, unipmetro) :
 		flag = 0
