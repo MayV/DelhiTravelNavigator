@@ -13,22 +13,22 @@ def get_busroutequery(request):
         if form.is_valid():
             uinpsrc = form.cleaned_data.get("uinpsrc").upper()
             uinpdest = form.cleaned_data.get("uinpdest").upper()
-
-            if form.clean_message(uinpsrc, uinpdest) !=-1:
+            if form.clean_message(uinpsrc, uinpdest) != -1:
                 retval = main_route(uinpsrc, uinpdest)
                 blank_form = BusRouteForm()
-                context = {'srcstop': uinpsrc, 'deststop': uinpdest, 'allRoutes': retval, 'form': blank_form}
+                busstops = blank_form.get_all()
+                context = {'srcstop': uinpsrc, 'deststop': uinpdest, 'allRoutes': retval, 'form': blank_form, 'busstops': busstops}
                 return render(request, 'busnetwork/display_busroute.html', context)
             else:
                 context = {}
                 return render(request, 'busnetwork/wrong_input.html', context)
-        else:
+        else:   #Never executed.
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusRouteForm()
-        busstop_set = blank_form.get_all()
-        context = {'form': blank_form, 'busstop':busstop_set}
+        busstops = blank_form.get_all()
+        context = {'form': blank_form, 'busstops':busstops}
         return render(request, 'busnetwork/busroute_query.html', context)
 
 
@@ -37,22 +37,22 @@ def get_busquery(request):
         form = BusForm(request.POST)
         if form.is_valid():
             uinpbus = form.cleaned_data.get("uinpbus").upper()
-
-            if  form.clean_message(uinpbus) !=-1:
+            if form.clean_message(uinpbus) != -1:
                 retval = main_bus(uinpbus)
                 blank_form = BusForm()
-                context = {'busDetails': retval, 'form': blank_form}
+                buses = blank_form.get_all()
+                context = {'busDetails': retval, 'form': blank_form, 'buses': buses}
                 return render(request, 'busnetwork/display_bus.html', context)
             else:
                 context = {}
                 return render(request, 'busnetwork/wrong_input.html', context)
-        else:
+        else:   #Never executed.
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusForm()
-        bus_set = blank_form.get_all()
-        context = {'form': blank_form, 'bus':bus_set}
+        buses = blank_form.get_all()
+        context = {'form': blank_form, 'buses':buses}
         return render(request, 'busnetwork/bus_query.html', context)
 
 
@@ -64,18 +64,19 @@ def get_busstopquery(request):
             if form.clean_message(uinpbusstop) != -1:
                 retval = main_busstop(uinpbusstop)
                 blank_form = BusStopForm()
-                context = {'busstopDetails': retval, 'form': blank_form}
+                busstops = blank_form.get_all()
+                context = {'busstopDetails': retval, 'form': blank_form, 'busstops': busstops}
                 return render(request, 'busnetwork/display_busstop.html', context)
             else:
                 context = {}
                 return render(request, 'busnetwork/wrong_input.html', context)
-        else:
+        else:   #Never executed.
             context = {}
             return render(request, 'busnetwork/wrong_input.html', context)
     else:   #if get method, create a blank form.
         blank_form = BusStopForm()
-        busstop_set = blank_form.get_all()
-        context = {'form': blank_form, 'busstop':busstop_set}
+        busstops = blank_form.get_all()
+        context = {'form': blank_form, 'busstops':busstops}
         return render(request, 'busnetwork/busstop_query.html', context)
 
 

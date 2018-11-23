@@ -21,6 +21,11 @@
                 <div class="col-sm-5" style=" margin: auto; margin-left: 20px; padding: 10px;">
                     <h4><label>Dest. Metro Station: </label>{{ form.uinpdest }}</h4>
                 </div>
+                <datalist id="station">
+                    {% for obj in stations %}
+                        <option value="{{obj}}">
+                    {% endfor %}
+                </datalist>
                 <div class="col-sm-1" style="margin: auto; padding: 10px;">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroroutequery' %}'">Find</button>
                 </div>

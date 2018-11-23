@@ -1,20 +1,17 @@
 {% extends 'home/base_header_and_navbar.html' %}
 {% block body %}
 <body>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-  crossorigin="anonymous"></script>
     <div class="container-fluid">
         <form method="post">
             {% csrf_token %}
             <div class="row row-buffer">
                 <div class="col-sm-6" style=" margin: auto; margin-left: 50px; padding: 10px;">
                     <h4>{{ form }}</h4>
+                    <datalist id="color">
+                        {% for obj in colors %}
+                            <option value="{{obj}}">
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div class="col-sm-3" style="margin: auto; padding: 10px;">
                     <button type="submit" class="btn btn-info btn-block" onClick="location.href='{% url 'get_metroquery' %}'">Get</button>

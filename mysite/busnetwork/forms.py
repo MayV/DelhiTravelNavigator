@@ -1,43 +1,36 @@
 from django import forms
-from .models import Bus,Busstop,Graph
-from django.shortcuts import render
+from .models import Bus, Busstop
+
 
 class BusRouteForm(forms.Form):
     uinpsrc = forms.CharField(label="Source Bus Stop ", max_length=100)
     uinpdest = forms.CharField(label="Destination Bus Stop ", max_length=100)
 
-    uinpsrc.widget.attrs.update({'list':'busstop'})
+    uinpsrc.widget.attrs.update({'list':'busstop'}) #Add list attribute and mentions datalist_id in it.
     uinpdest.widget.attrs.update({'list':'busstop'})
 
     def clean_message(self,uinpsrc,uinpdest):
-        flag_d=0
-        flag_s=0
-        bus_set = Bus.objects.all()
-        for obj in bus_set:
-            for stop in obj.stops:
+        flagsrc=0
+        flagdest=0
+        busList = Bus.objects.all()
+        for b in busList:
+            for stop in b.stops:
                 if stop == uinpsrc:
-                    flag_s = 1
+                    flagsrc = 1
                 if stop == uinpdest:
-                    flag_d = 1
-
-        if flag_d == 0 or flag_s == 0:
+                    flagdest = 1
+        if flagsrc == 0 or flagdest == 0:
             return -1
         else:
             return 1
 
-    '''def get_all(self):
-        busstop_set = Busstop.objects.all()
-        busstop = set()
-        for obj in busstop_set:
-            busstop.add(obj.name)
-		return busstop'''
-
     def get_all(self):
-        busstop_set=Busstop.objects.all()
-        busstop=set()
-        for obj in busstop_set:
-            busstop.add(obj.name)
-        return busstop
+        busstopList = Busstop.objects.all()
+        busstops=set()
+        for stop in busstopList:
+            busstops.add(stop.name)
+        return busstops
+
 
 class BusForm(forms.Form):
     uinpbus = forms.CharField(label="Enter Bus Number ", max_length=100)
@@ -45,25 +38,19 @@ class BusForm(forms.Form):
     uinpbus.widget.attrs.update({'list':'bus'})
 
     def clean_message(self,uinpbus):
-        bus_set = Bus.objects.all()
-        for obj in bus_set:
-            if obj.id == uinpbus:
+        busList = Bus.objects.all()
+        for b in busList:
+            if b.id == uinpbus:
                 return 1
         return -1
 
-    '''def get_all(self):
-		bus_no_set=Bus.objects.all()
-		bus_no = set()
-		for obj in bus_no_set:
-			bus_no.add(obj.id)
-		return bus_no'''
-
     def get_all(self):
-        bus_no_set=Bus.objects.all()
-        bus_no =set()
-        for obj in bus_no_set:
-            bus_no.add(obj.id)
-        return bus_no
+        busList = Bus.objects.all()
+        buses=set()
+        for obj in busList:
+            buses.add(obj.id)
+        return buses
+
 
 class BusStopForm(forms.Form):
     uinpbusstop = forms.CharField(label="Enter Bus Stop ", max_length=100)
@@ -71,15 +58,15 @@ class BusStopForm(forms.Form):
     uinpbusstop.widget.attrs.update({'list':'busstop'})
 
     def clean_message(self,uinpbusstop):
-        busstop_set = Busstop.objects.all()
-        for obj in busstop_set:
+        busstopList = Busstop.objects.all()
+        for obj in busstopList:
             if obj.name == uinpbusstop:
                 return 1
         return -1
 
     def get_all(self):
-        busstop_set=Busstop.objects.all()
-        busstop=set()
-        for obj in busstop_set:
-            busstop.add(obj.name)
-        return busstop
+        busstopList = Busstop.objects.all()
+        busstops=set()
+        for obj in busstopList:
+            busstops.add(obj.name)
+        return busstops
