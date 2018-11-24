@@ -1,4 +1,5 @@
 from .models import Graph
+from .models import Metro
 
 def getallRoutes(src, grph, stationvisited, dest):
     if src.name == dest.name:
@@ -7,14 +8,10 @@ def getallRoutes(src, grph, stationvisited, dest):
     allPaths = []
     for i in range(len(src.adj_List)):
         if src.adj_List[i] not in stationvisited:
-            #if src.adj_List[i] in dp:
-             #   retpath = dp[src.adj_list[i]]
             stationvisited[src.adj_List[i]] = True
             retpath = getallRoutes(grph[src.adj_List[i]], grph, stationvisited, dest)
-                #dp[src.adj_List[i]] = retpath
             stationvisited.pop(src.adj_List[i])
             for j in range(len(retpath)):
-                #tempdist = int(retpath[j][0])+(src.dist_List[i])
                 allPaths.append([src.name]+retpath[j])
     return allPaths
 
@@ -27,9 +24,10 @@ def main_route(uinpsrc, uinpdest):
     src = grph[uinpsrc]     #Object of Graph type.
     dest = grph[uinpdest]   #Object of Graph type.
     stationvisited = {}    #Marks the stations which are visited.
-    stationvisited[src.name]=True
+    stationvisited[src.name] = True
     retval = getallRoutes(src, grph, stationvisited, dest)
-    minroutelen = 1000
+    stationvisited[src.name] = False
+    minroutelen = 1000  #Initialize to a max value.
     for i in range(len(retval)):
         if minroutelen > len(retval[i]):
             minroutelen = len(retval[i])
