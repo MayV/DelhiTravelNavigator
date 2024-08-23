@@ -23,7 +23,7 @@
           pip install -r mysite/requirements.txt
         '';
         # Open editors for the following files by default, if they exist:
-        default.openFiles = ["README.md" "mysite/mysite/urls.py"];
+        default.openFiles = ["README.md"];
       };
       # To run something each time the workspace is (re)started, use the `onStart` hook
     };
